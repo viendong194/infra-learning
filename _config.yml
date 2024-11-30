@@ -1,3 +1,11 @@
 theme: jekyll-theme-minimal
 title: DongVHV - Infra Learning Report
 description: Infra Learning Report, KDN 2024
+# Navigation configuration
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Linux"
+    url: "/linux"
+  - title: "/shell"
+    url: "/shell"
