@@ -1,3 +1,6 @@
+---
+id: git-github
+---
 # Infra Learning
 
 #### Infra Learning For KDN Project 2004 and so on.
