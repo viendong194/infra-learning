@@ -1,4 +1,4 @@
-theme: jekyll-theme-minimal
+remote_theme: zendesk/jekyll-theme-zendesk-garden@main
 title: DongVHV - Infra Learning Report
 description: Infra Learning Report, KDN 2024
 sidebar:
