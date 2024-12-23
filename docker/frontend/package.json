@@ -1,0 +1,12 @@
+{
+  "name": "nuxt-app",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "axios": "^0.21.1",
+    "nuxt": "^2.15.7"
+  }
+}
