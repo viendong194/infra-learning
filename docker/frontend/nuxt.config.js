@@ -10,6 +10,6 @@ export default {
   buildModules: [],
   modules: ["@nuxtjs/axios"],
   axios: {
-    baseURL: "http://localhost:8000", // Backend API URL
+    baseURL: "http://node:8000", // Backend API URL
   },
 };

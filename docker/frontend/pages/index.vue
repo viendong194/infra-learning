@@ -6,24 +6,24 @@
 </template>
 
 <script>
-import UserTable from '~/components/UserTable.vue'
+import UserTable from "~/components/UserTable.vue";
 
 export default {
   components: {
-    UserTable
+    UserTable,
   },
   data() {
     return {
-      users: []
-    }
+      users: [],
+    };
   },
   async fetch() {
     try {
-      const response = await this.$axios.$get('http://localhost:8000/users')
-      this.users = response
+      const response = await this.$axios.$get("http://node:8000/users");
+      this.users = response;
     } catch (error) {
-      console.error('Error fetching users:', error)
+      console.error("Error fetching users:", error);
     }
-  }
-}
+  },
+};
 </script>
