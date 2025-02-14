@@ -1,6 +1,6 @@
 // client/src/components/Login.js
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../api/axios';
 import { useNavigate } from 'react-router-dom';
 
 const Login=()=> {
@@ -10,7 +10,7 @@ const Login=()=> {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/login', { email, password });
+      const response = await axios.post('/login', { email, password });
       localStorage.setItem('token', response.data.token);
       alert('User logged in successfully');
       navigate('/tasks');

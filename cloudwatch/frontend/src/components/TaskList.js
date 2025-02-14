@@ -1,6 +1,6 @@
 // client/src/components/TaskList.js
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../api/axios';
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -10,7 +10,7 @@ const TaskList = () => {
 
   const fetchTasks = async () => {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:5000/tasks', {
+    const response = await axios.get('/tasks', {
       headers: { 'x-access-token': token }
     });
     setTasks(response.data);
@@ -21,7 +21,7 @@ const TaskList = () => {
 
   const addTask = async () => {
     const token = localStorage.getItem('token');
-    await axios.post('http://localhost:5000/tasks', { title, description, due_date: dueDate }, {
+    await axios.post('/tasks', { title, description, due_date: dueDate }, {
       headers: { 'x-access-token': token }
     });
     setTitle('');

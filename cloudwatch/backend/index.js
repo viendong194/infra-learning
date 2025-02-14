@@ -10,21 +10,31 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'todo_app'
-});
+const dbConfig = {
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+};
 
-db.connect(err => {
-  if (err) throw err;
-  console.log('MySQL Connected...');
-});
+function connectWithRetry() {
+  db = mysql.createConnection(dbConfig);
 
+  db.connect((err) => {
+    if (err) {
+      console.error("Error connecting to MySQL:", err);
+      setTimeout(connectWithRetry, 30000); // Retry after 30s seconds
+      return;
+    }
+    console.log("Connected to MySQL");
+  });
+
+  return db;
+}
+connectWithRetry();
 // Routes will go here
 
-// server.js (continued)
+
 const registerUser = (req, res) => {
     const { email, password } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 8);
@@ -111,5 +121,5 @@ const verifyToken = (req, res, next) => {
   
 
 app.listen(8000, () => {
-  console.log('Server started on port 8000');
+  console.log('Server started on port 8000****');
 });
