@@ -1,19 +1,22 @@
 // client/src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Routes,Navigate } from 'react-router-dom';
 import Register from './components/Register';
 import Login from './components/Login';
 import TaskList from './components/TaskList';
+import useAuth from './hooks/useAuth';
 
 function App() {
+  const isAuthenticated = useAuth();
   return (
-    <Router>
-      <Switch>
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
-        <Route path="/tasks" component={TaskList} />
-      </Switch>
-    </Router>
+    <div className='App'>
+      <Routes>
+        <Route path="/register" element={Register} />
+        <Route path="/login" element={isAuthenticated ? <Navigate to="/tasks" /> : <Login />}/>
+        <Route path="/tasks" element={isAuthenticated ? <TaskList /> : <Navigate to="/login" />}/>
+        <Route path="/" element={<Navigate to="/login"/>}/>
+      </Routes>
+    </div>
   );
 }
 
