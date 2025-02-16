@@ -9,9 +9,8 @@ const useAuth = () => {
     const token = localStorage.getItem('token');
     if (token) {
       setIsAuthenticated(true);
-      navigate('/tasks');
     } else {
-      navigate('/login');
+      setIsAuthenticated(false);
     }
   }, [navigate]);
 
