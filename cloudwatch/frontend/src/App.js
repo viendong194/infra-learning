@@ -1,5 +1,6 @@
 // client/src/App.js
 import React from 'react';
+import './App.css';
 import { Route, Routes,Navigate } from 'react-router-dom';
 import Register from './components/Register';
 import Login from './components/Login';

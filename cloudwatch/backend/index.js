@@ -64,7 +64,7 @@ const registerUser = (req, res) => {
     "INSERT INTO users (email, password) VALUES (?, ?)",
     [email, hashedPassword],
     (err, result) => {
-      if (err) return res.status(500).send("Error registering user");
+      if (err) return res.status(500).send("Error registering user:"+err);
       res.status(200).send("User registered successfully");
     }
   );
@@ -103,14 +103,14 @@ const verifyToken = (req, res, next) => {
 };
 
 const addTask = (req, res) => {
-  const { title, description, due_date } = req.body;
+  const { title, description, duedate } = req.body;
   const userId = req.userId;
 
   db.query(
-    "INSERT INTO tasks (title, description, due_date, user_id) VALUES (?, ?, ?, ?)",
-    [title, description, due_date, userId],
+    "INSERT INTO tasks (title, description, duedate, user_id) VALUES (?, ?, ?, ?)",
+    [title, description, duedate, userId],
     (err, result) => {
-      if (err) return res.status(500).send("Error adding task");
+      if (err) return res.status(500).send("Error adding task:"+err);
       res.status(200).send("Task added successfully");
     }
   );
@@ -123,7 +123,7 @@ const updateTask = (req, res) => {
     "UPDATE tasks SET status = ? WHERE id = ?",
     [status, id],
     (err, result) => {
-      if (err) return res.status(500).send("Error updating task");
+      if (err) return res.status(500).send("Error updating task:"+err);
       res.status(200).send("Task updated successfully");
     }
   );
@@ -133,7 +133,7 @@ const deleteTask = (req, res) => {
   const { id } = req.body;
 
   db.query("DELETE FROM tasks WHERE id = ?", [id], (err, result) => {
-    if (err) return res.status(500).send("Error deleting task");
+    if (err) return res.status(500).send("Error deleting task:"+err);
     res.status(200).send("Task deleted successfully");
   });
 };
@@ -145,7 +145,7 @@ const getTasks = (req, res) => {
     "SELECT * FROM tasks WHERE user_id = ?",
     [userId],
     (err, results) => {
-      if (err) return res.status(500).send("Error fetching tasks");
+      if (err) return res.status(500).send("Error fetching tasks:"+err);
       res.status(200).send(results);
     }
   );

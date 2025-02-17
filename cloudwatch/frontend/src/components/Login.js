@@ -15,16 +15,21 @@ const Login=()=> {
       alert('User logged in successfully');
       navigate('/tasks');
     } catch (error) {
-      alert('Error logging in');
+      alert('Error logging in:'+error);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className='container'>
+      <h1>Login
+      </h1>
+      <form onSubmit={handleSubmit}>
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
       <button type="submit">Login</button>
     </form>
+    </div>
+    
   );
 }
 
